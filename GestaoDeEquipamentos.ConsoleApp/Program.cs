@@ -17,21 +17,29 @@ internal class Program
                 case '1':
                     telaEquipamento.CadastrarRegistro();
                     break;
+
+                case '2':
+                    telaEquipamento.VisualizarRegistros();
+                    break;
             }
         }
     }
 }
-
+// Apresentação
 public class TelaEquipamento
 {
-    public char ApresentarMenu()
+    public RepositorioEquipamento repositorioEquipamento = new RepositorioEquipamento();
+    public void ExibirCabecalho()
     {
         Console.Clear();
         Console.WriteLine("Gestão de Equipamentos");
-
         Console.WriteLine();
-
+    }
+    public char ApresentarMenu()
+    {
+        ExibirCabecalho();
         Console.WriteLine("1 - Cadastro de Equipamento");
+        Console.WriteLine("2 - Visualizar Equipamentos");
         Console.WriteLine("S - Sair");
 
         Console.WriteLine();
@@ -41,14 +49,11 @@ public class TelaEquipamento
 
         return opcaoEscolhida;
 
-
     }
 
     public void CadastrarRegistro()
     {
-        Console.Clear();
-        Console.WriteLine("Gestão de Equipamentos");
-        Console.WriteLine();
+        ExibirCabecalho();
 
         Console.WriteLine("Cadastro de Equipamentos");
 
@@ -76,9 +81,48 @@ public class TelaEquipamento
         equipamento.fabricante = fabricante;
         equipamento.dataFabricacao = dataFabricacao;
 
+        repositorioEquipamento.equipamentos[0] = equipamento;   
+
         Console.WriteLine($"\nEquipamento: \"{equipamento.nome}\" cadastrado com sucesso");
         Console.ReadLine();
     }
+
+    public void VisualizarRegistros()
+    {
+        ExibirCabecalho();
+
+        Console.WriteLine("Visualizaçao de Equipamentos");
+        Console.WriteLine();
+
+        Console.WriteLine(
+            "{0, -10} | {1, -20} | {2, -15} | {3, -10} | {4, -20} | {5, -15} ",
+            "Id", "Nome", "Preço de Aquisição", "Nro. Série", "Fabricante", "Data Fabricação"
+        );
+
+        Equipamento[] equipamentos = repositorioEquipamento.equipamentos;
+
+        for ( int i = 0; i < equipamentos.Length; i++)
+        {
+            Equipamento e =  equipamentos[i];
+
+            if (e == null)
+                continue;
+
+            Console.WriteLine(
+                "{0, -10} | {1, -20} | {2, -15} | {3, -10} | {4, -20} | {5, -15} ",
+                e.id, e.nome, e.precoAquisicao.ToString("C2"), e.numeroSerie, e.fabricante, e.dataFabricacao.ToShortDateString()
+            );
+
+            Console.ReadLine();
+        }
+    }
+}
+
+// Dados
+
+public class RepositorioEquipamento
+{
+    public Equipamento[] equipamentos = new Equipamento[100];
 }
 
 // Regras de negócio
