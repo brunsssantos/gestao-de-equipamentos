@@ -1,4 +1,4 @@
-﻿namespace GestaoDeEquipamentos.ConsoleApp;
+﻿namespace GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
 
 // Regras de negócio
 public class Equipamento
