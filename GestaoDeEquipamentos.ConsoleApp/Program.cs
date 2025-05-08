@@ -24,6 +24,9 @@ internal class Program
                 case '3':
                     telaEquipamento.EditarRegistros();
                     break;
+                case '4':
+                    telaEquipamento.ExcluirRegistros();
+                    break;
             }
         }
     }
@@ -44,6 +47,7 @@ public class TelaEquipamento
         Console.WriteLine("1 - Cadastro de Equipamento");
         Console.WriteLine("2 - Visualizar Equipamentos");
         Console.WriteLine("3 - Editar Equipamentos");
+        Console.WriteLine("3 - Excluir Equipamentos");
         Console.WriteLine("S - Sair");
 
         Console.WriteLine();
@@ -69,6 +73,39 @@ public class TelaEquipamento
 
         Console.WriteLine($"\nEquipamento: \"{equipamento.nome}\" cadastrado com sucesso");
         Console.ReadLine();
+    }
+
+    public void ExcluirRegistros()
+    {
+        ExibirCabecalho();
+
+        Console.WriteLine("Exclusão de Equipamentos");
+
+        Console.WriteLine();
+
+        VisualizarRegistros(false);
+
+        Console.WriteLine("Digite o id do registro que deseja selecionar:");
+        int idSelecionado = Convert.ToInt32(Console.ReadLine());
+
+        Equipamento[] equipamentos = repositorioEquipamento.equipamentos;
+
+        for (int i = 0; i < equipamentos.Length; i++)
+        {
+
+            if (equipamentos[i] == null)
+                continue;
+
+            if (equipamentos[i].id == idSelecionado)
+            {
+                equipamentos[i] = null;
+                break;
+            }
+        }
+
+        Console.WriteLine($"\nEquipamento excluído com sucesso");
+        Console.ReadLine();
+
     }
 
     public Equipamento ObterDados()
@@ -170,6 +207,8 @@ public class TelaEquipamento
         Console.WriteLine($"\nEquipamento: \"{equipamentoSelecionado.nome}\" editado com sucesso");
         Console.ReadLine();
     }
+
+   
 }
 
 // Dados
