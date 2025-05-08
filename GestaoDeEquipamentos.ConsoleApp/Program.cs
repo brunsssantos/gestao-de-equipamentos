@@ -19,7 +19,10 @@ internal class Program
                     break;
 
                 case '2':
-                    telaEquipamento.VisualizarRegistros();
+                    telaEquipamento.VisualizarRegistros(true);
+                    break;
+                case '3':
+                    telaEquipamento.EditarRegistros();
                     break;
             }
         }
@@ -40,6 +43,7 @@ public class TelaEquipamento
         ExibirCabecalho();
         Console.WriteLine("1 - Cadastro de Equipamento");
         Console.WriteLine("2 - Visualizar Equipamentos");
+        Console.WriteLine("3 - Editar Equipamentos");
         Console.WriteLine("S - Sair");
 
         Console.WriteLine();
@@ -59,6 +63,16 @@ public class TelaEquipamento
 
         Console.WriteLine();
 
+        Equipamento equipamento = ObterDados();
+
+        repositorioEquipamento.equipamentos[0] = equipamento;
+
+        Console.WriteLine($"\nEquipamento: \"{equipamento.nome}\" cadastrado com sucesso");
+        Console.ReadLine();
+    }
+
+    public Equipamento ObterDados()
+    {
         Console.WriteLine("Digite o nome do equipamento: ");
         string nome = Console.ReadLine();
 
@@ -81,15 +95,13 @@ public class TelaEquipamento
         equipamento.fabricante = fabricante;
         equipamento.dataFabricacao = dataFabricacao;
 
-        repositorioEquipamento.equipamentos[0] = equipamento;   
-
-        Console.WriteLine($"\nEquipamento: \"{equipamento.nome}\" cadastrado com sucesso");
-        Console.ReadLine();
+        return equipamento;
     }
 
-    public void VisualizarRegistros()
+    public void VisualizarRegistros(bool exibirCabecalho)
     {
-        ExibirCabecalho();
+        if (exibirCabecalho == true)
+            ExibirCabecalho();
 
         Console.WriteLine("Visualizaçao de Equipamentos");
         Console.WriteLine();
@@ -115,6 +127,48 @@ public class TelaEquipamento
 
             Console.ReadLine();
         }
+    }
+
+    public void EditarRegistros()
+    {
+        ExibirCabecalho();
+
+        Console.WriteLine("Edição de Equipamentos");
+        Console.WriteLine();
+
+        VisualizarRegistros(false);
+
+        Console.WriteLine("Digite o id do registro que deseja selecionar:");
+        int idSelecionado = Convert.ToInt32(Console.ReadLine());
+
+        Equipamento equipamentoSelecionado = null;
+
+        Equipamento[] equipamentos = repositorioEquipamento.equipamentos;
+
+        for (int i = 0; i < equipamentos.Length; i++)
+        {
+            Equipamento e = equipamentos[i];
+
+            if (e == null)
+                continue;
+
+            if (e.id == idSelecionado)
+                equipamentoSelecionado = e;
+        }
+
+        if (equipamentoSelecionado == null)
+            return;
+
+        Equipamento equipamentoAtualizado = ObterDados();
+
+        equipamentoSelecionado.nome = equipamentoAtualizado.nome;
+        equipamentoSelecionado.fabricante = equipamentoAtualizado.fabricante;
+        equipamentoSelecionado.dataFabricacao = equipamentoAtualizado.dataFabricacao;
+        equipamentoSelecionado.precoAquisicao = equipamentoAtualizado.precoAquisicao;
+        equipamentoSelecionado.numeroSerie = equipamentoAtualizado.numeroSerie;
+
+        Console.WriteLine($"\nEquipamento: \"{equipamentoSelecionado.nome}\" editado com sucesso");
+        Console.ReadLine();
     }
 }
 
