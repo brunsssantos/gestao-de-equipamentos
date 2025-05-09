@@ -6,12 +6,17 @@ internal class Program
 {
     static void Main(string[] args)
     {
+        RepositorioEquipamento repositorioEquipamento = new RepositorioEquipamento(); 
+
         TelaEquipamento telaEquipamento = new TelaEquipamento();
-        TelaChamado telaChamado = new TelaChamado(); 
+        telaEquipamento.repositorioEquipamento = repositorioEquipamento;
+
+        TelaChamado telaChamado = new TelaChamado();
+        telaChamado.repositorioEquipamento = repositorioEquipamento; 
 
         while (true)
         {
-            char telaEscolhida = '2';
+            char telaEscolhida = ApresentarMenuPrincipal();
 
             if (telaEscolhida == '1')
             {
@@ -64,6 +69,31 @@ internal class Program
             }
             
         }
+    }
+
+    public static char ApresentarMenuPrincipal()
+    {
+        Console.Clear();
+
+        Console.WriteLine("----------------------------------------");
+        Console.WriteLine("         Gestão de Equipamentos         ");
+        Console.WriteLine("----------------------------------------");
+
+        Console.WriteLine();
+
+        Console.WriteLine("1 - Controle de Equipamentos");
+        Console.WriteLine("2 - Controle de Chamados");
+        Console.WriteLine("S - Sair");
+
+        Console.WriteLine();
+
+        Console.WriteLine("Escolha uma das opções");
+        char opcaoEscolhida = Console.ReadLine()[0];//pegar primeiro caractere
+
+        return opcaoEscolhida;
+
+
+
     }
 }
 
