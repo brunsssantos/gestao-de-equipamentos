@@ -6,12 +6,14 @@ internal class Program
 {
     static void Main(string[] args)
     {
-        RepositorioEquipamento repositorioEquipamento = new RepositorioEquipamento(); 
+        RepositorioEquipamento repositorioEquipamento = new RepositorioEquipamento();
+        RepositorioChamado repositorioChamado = new RepositorioChamado();
 
         TelaEquipamento telaEquipamento = new TelaEquipamento();
         telaEquipamento.repositorioEquipamento = repositorioEquipamento;
 
         TelaChamado telaChamado = new TelaChamado();
+        telaChamado.repositorioChamado = repositorioChamado;
         telaChamado.repositorioEquipamento = repositorioEquipamento; 
 
         while (true)
