@@ -1,13 +1,18 @@
 ﻿using GestaoDeEquipamentos.ConsoleApp.ModuloChamado;
 using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
+using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
 
 namespace GestaoDeEquipamentos.ConsoleApp;
 internal class Program
 {
     static void Main(string[] args)
     {
+        RepositorioFabricante repositorioFabricante = new RepositorioFabricante();
         RepositorioEquipamento repositorioEquipamento = new RepositorioEquipamento();
         RepositorioChamado repositorioChamado = new RepositorioChamado();
+
+        TelaFabricante telaFabricante = new TelaFabricante();
+        telaFabricante.repositorioFabricante = repositorioFabricante;
 
         TelaEquipamento telaEquipamento = new TelaEquipamento();
         telaEquipamento.repositorioEquipamento = repositorioEquipamento;
@@ -69,7 +74,32 @@ internal class Program
                         break;
                 }
             }
-            
+
+            else if (telaEscolhida == '3')
+            {
+                char opcaoEscolhida = telaFabricante.ApresentarMenu();
+
+                if (opcaoEscolhida == 'S')
+                    break;
+
+                switch (opcaoEscolhida)
+                {
+                    case '1':
+                        telaFabricante.CadastrarFabricante();
+                        break;
+
+                    case '2':
+                        telaFabricante.VisualizarFabricantes(true);
+                        break;
+                    case '3':
+                        telaFabricante.EditarFabricantes();
+                        break;
+                    case '4':
+                        telaFabricante.ExcluirFabricantes();
+                        break;
+                }
+            }
+
         }
     }
 
@@ -85,6 +115,7 @@ internal class Program
 
         Console.WriteLine("1 - Controle de Equipamentos");
         Console.WriteLine("2 - Controle de Chamados");
+        Console.WriteLine("2 - Controle de Fabricantes");
         Console.WriteLine("S - Sair");
 
         Console.WriteLine();
