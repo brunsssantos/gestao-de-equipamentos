@@ -5,8 +5,13 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante
 {
     public class TelaFabricante
     {
-        public RepositorioFabricante repositorioFabricante;
-        public void ExibirCabecalho()
+        private RepositorioFabricante repositorioFabricante;
+
+        public TelaFabricante(RepositorioFabricante repositorioF)
+        {
+            repositorioFabricante = repositorioF;
+        }
+        private void ExibirCabecalho()
         {
             Console.Clear();
             Console.WriteLine("Gestão de Fabricantes");
@@ -32,12 +37,30 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante
 
         public void CadastrarFabricante()
         {
-            ExibirCabecalho();
+            ExibirCabecalho();  
 
             Console.WriteLine("Cadastro de Fabricantes");
             Console.WriteLine();
 
             Fabricante novoFabricante = ObterDados();
+
+            string erros = novoFabricante.Validar();
+
+            if (erros.Length > 0)
+            {
+                Console.WriteLine();
+                
+                Console.ForegroundColor = ConsoleColor.Red;
+
+                Console.WriteLine(erros);
+                Console.ReadLine();
+                Console.ResetColor();
+
+                Console.WriteLine("\nDigite ENTER para contnuar...");
+                Console.ReadLine();
+
+                return;
+            }
 
             repositorioFabricante.CadastrarFabricante(novoFabricante);
 
@@ -128,7 +151,7 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante
 
 
 
-        public Fabricante ObterDados()
+        private Fabricante ObterDados()
         {
             Console.WriteLine("Digite o nome do fabricante: ");
             string nome = Console.ReadLine();
@@ -139,11 +162,8 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante
             Console.WriteLine("Digite o telefone do fabricante: ");
             string telefone = Console.ReadLine();
 
-            Fabricante fabricante = new Fabricante();
-            fabricante.nome = nome;
-            fabricante.email = email;
-            fabricante.telefone = telefone;
-
+            Fabricante fabricante = new Fabricante(nome, email, telefone);
+          
             return fabricante;
         }
     }
