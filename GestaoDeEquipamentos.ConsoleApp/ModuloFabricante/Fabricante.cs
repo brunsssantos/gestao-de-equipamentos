@@ -16,8 +16,7 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante
             this.telefone = telefone;
         }
 
-        public string
-             Validar()
+        public string Validar()
         {
             string erros = "";
 
@@ -37,6 +36,13 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante
                 erros += "O telefone deve conter no mínimo 9 caracteres\n";
 
             return erros;
+        }
+
+        public void AtualizarRegistro(Fabricante fabricanteAtualizado)
+        {
+            this.nome = fabricanteAtualizado.nome;
+            this.email = fabricanteAtualizado.email;
+            this.telefone = fabricanteAtualizado.telefone;
         }
     }
 }

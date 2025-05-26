@@ -19,9 +19,7 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante
             if (fabricanteSelecionado == null)
                 return false;
 
-            fabricanteSelecionado.nome = fabricanteAtualizado.nome;
-            fabricanteSelecionado.email = fabricanteAtualizado.email;
-            fabricanteSelecionado.telefone = fabricanteAtualizado.telefone;
+            fabricanteSelecionado.AtualizarRegistro(fabricanteAtualizado);
 
             return true;
         }
