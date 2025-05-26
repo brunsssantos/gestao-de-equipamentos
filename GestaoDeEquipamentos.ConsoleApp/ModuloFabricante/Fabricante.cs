@@ -9,15 +9,15 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante
         public string email;
         public string telefone;
 
-        public Fabricante (string nome, string email, string telefone)
+        public Fabricante(string nome, string email, string telefone)
         {
             this.nome = nome;
             this.email = email;
             this.telefone = telefone;
         }
 
-        public string 
-             Validar ()
+        public string
+             Validar()
         {
             string erros = "";
 
@@ -35,7 +35,8 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante
 
             else if (telefone.Length < 9)
                 erros += "O telefone deve conter no mínimo 9 caracteres\n";
-            
+
             return erros;
         }
+    }
 }

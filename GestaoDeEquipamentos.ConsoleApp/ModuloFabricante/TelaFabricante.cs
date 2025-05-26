@@ -59,6 +59,9 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante
                 Console.WriteLine("\nDigite ENTER para contnuar...");
                 Console.ReadLine();
 
+                //Recursão
+                CadastrarFabricante();
+
                 return;
             }
 
