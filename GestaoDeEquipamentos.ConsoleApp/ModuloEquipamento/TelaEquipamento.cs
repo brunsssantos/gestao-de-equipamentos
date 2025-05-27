@@ -6,8 +6,9 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
 // Apresentação
 public class TelaEquipamento
 {
-    private RepositorioEquipamento repositorioEquipamento;
-    private RepositorioFabricante repositorioFabricante;
+    public RepositorioEquipamento repositorioEquipamento;
+    public RepositorioFabricante repositorioFabricante;
+
     public void ExibirCabecalho()
     {
         Console.Clear();
@@ -63,7 +64,7 @@ public class TelaEquipamento
 
         Console.WriteLine();
 
-        bool conseguiuExluir = repositorioEquipamento.ExcluirEquipamento(idSelecionado);
+        bool conseguiuExluir = repositorioEquipamento.ExcluirRegistro(idSelecionado);
 
         if (!conseguiuExluir)
         {
@@ -155,11 +156,11 @@ public class TelaEquipamento
             "Id", "Nome", "Preço de Aquisição", "Nro. Série", "Fabricante", "Data Fabricação"
         );
 
-        Equipamento[] equipamentos = repositorioEquipamento.SelecionarEquipamentos();
+        EntidadeBase[] equipamentos = repositorioEquipamento.SelecionarRegistros();
 
         for ( int i = 0; i < equipamentos.Length; i++)
         {
-            Equipamento e =  equipamentos[i];
+            Equipamento e =  (Equipamento)equipamentos[i];
 
             if (e == null)
                 continue;
@@ -189,7 +190,7 @@ public class TelaEquipamento
 
         Equipamento equipamentoAtualizado = ObterDados();
 
-        bool conseguiuEditar = repositorioEquipamento.EditarEquipamento(idSelecionado, equipamentoAtualizado); 
+        bool conseguiuEditar = repositorioEquipamento.EditarRegistro(idSelecionado, equipamentoAtualizado); 
 
         if(!conseguiuEditar)
         {

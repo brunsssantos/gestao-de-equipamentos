@@ -1,8 +1,9 @@
-﻿using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
+﻿using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
+using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
 
 namespace GestaoDeEquipamentos.ConsoleApp.ModuloChamado
 {
-    public class Chamado
+    public class Chamado : EntidadeBase
     {
         public int id;
         public string titulo;

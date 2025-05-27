@@ -1,4 +1,5 @@
-﻿using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
+﻿using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
+using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
 
 namespace GestaoDeEquipamentos.ConsoleApp.ModuloChamado
 {
@@ -147,7 +148,7 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloChamado
             Console.WriteLine("Digite o ID do equipamento que deseja selecionar: ");
             int idEquipamento = Convert.ToInt32(Console.ReadLine());
 
-            Equipamento equipamentoSelecionado = repositorioEquipamento.SelecionarEquipamentoPorId(idEquipamento);
+            Equipamento equipamentoSelecionado = (Equipamento)repositorioEquipamento.SelecionarRegistroPorId(idEquipamento);
 
             Chamado chamado = new Chamado();
             chamado.titulo = titulo;
@@ -169,11 +170,11 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloChamado
                 "Id", "Nome", "Preço de Aquisição", "Nro. Série", "Fabricante", "Data Fabricação"
             );
 
-            Equipamento[] equipamentos = repositorioEquipamento.SelecionarEquipamentos();
+            EntidadeBase[] equipamentos = repositorioEquipamento.SelecionarRegistros();
 
             for (int i = 0; i < equipamentos.Length; i++)
             {
-                Equipamento e = equipamentos[i];
+                Equipamento e = (Equipamento)equipamentos[i];
 
                 if (e == null)
                     continue;
