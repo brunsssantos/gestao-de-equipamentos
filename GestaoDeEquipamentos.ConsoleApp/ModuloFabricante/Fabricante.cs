@@ -1,10 +1,10 @@
 ﻿using System.Net.Mail;
+using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
 
 namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante
 {
-    public class Fabricante
+    public class Fabricante : EntidadeBase
     {
-        public int id;
         public string nome;
         public string email;
         public string telefone;
@@ -26,7 +26,7 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante
             else if (nome.Length < 2)
                 erros += "O nome deve conter mais que 1 caractere\n";
 
-            if (MailAddress.TryCreate(email, out _))
+            if (!MailAddress.TryCreate(email, out _))
                 erros += "O e-mail deve conter um formato válido \"nome@provedor.com\"!\n";
 
             if (string.IsNullOrWhiteSpace(telefone))
@@ -38,8 +38,10 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante
             return erros;
         }
 
-        public void AtualizarRegistro(Fabricante fabricanteAtualizado)
+        public override void AtualizarRegistro(EntidadeBase registroAtualizado)
         {
+            Fabricante fabricanteAtualizado = (Fabricante)registroAtualizado;
+
             this.nome = fabricanteAtualizado.nome;
             this.email = fabricanteAtualizado.email;
             this.telefone = fabricanteAtualizado.telefone;

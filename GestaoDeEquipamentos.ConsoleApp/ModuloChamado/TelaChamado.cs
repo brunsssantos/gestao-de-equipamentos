@@ -39,7 +39,7 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloChamado
 
             Chamado chamado = ObterDados();
 
-            repositorioChamado.CadastrarChamado(chamado);
+            repositorioChamado.CadastrarRegistro(chamado);
 
             Console.WriteLine($"\nChamado: \"{chamado.titulo}\" cadastrado com sucesso");
             Console.ReadLine();

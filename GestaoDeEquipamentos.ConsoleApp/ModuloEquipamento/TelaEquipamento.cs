@@ -1,9 +1,13 @@
-﻿namespace GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
+﻿using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
+using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
+
+namespace GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
 
 // Apresentação
 public class TelaEquipamento
 {
-    public RepositorioEquipamento repositorioEquipamento;
+    private RepositorioEquipamento repositorioEquipamento;
+    private RepositorioFabricante repositorioFabricante;
     public void ExibirCabecalho()
     {
         Console.Clear();
@@ -38,7 +42,7 @@ public class TelaEquipamento
 
         Equipamento equipamento = ObterDados();
 
-        repositorioEquipamento.CadastrarEquipamento(equipamento);
+        repositorioEquipamento.CadastrarRegistro(equipamento);
 
         Console.WriteLine($"\nEquipamento: \"{equipamento.nome}\" cadastrado com sucesso");
         Console.ReadLine();
@@ -87,6 +91,13 @@ public class TelaEquipamento
         Console.WriteLine("Digite o nome do fabricante do equipamento: ");
         string fabricante = Console.ReadLine();
 
+        VisualizarFabricantes();
+
+        Console.WriteLine("Digite o id do fabricante do equipamento: ");
+        int idFabricante = Convert.ToInt32(Console.ReadLine());
+
+        Fabricante fabricanteSelecionado = (Fabricante)repositorioFabricante.SelecionarRegistroPorId(idFabricante);
+
         Console.WriteLine("Digite a data de fabricação do equipamento: ");
         DateTime dataFabricacao = DateTime.Parse(Console.ReadLine());
 
@@ -98,6 +109,37 @@ public class TelaEquipamento
         equipamento.dataFabricacao = dataFabricacao;
 
         return equipamento;
+    }
+
+    private void VisualizarFabricantes()
+    {
+        Console.WriteLine();
+
+        Console.WriteLine("Visualização de Fabricantes");
+
+        Console.WriteLine();
+
+        Console.WriteLine(
+            "{0, -10} | {1, -20} | {2, -30} | {3, -15}",
+            "Id", "Nome", "Email", "Telefone"
+        );
+
+        EntidadeBase[] fabricantes = repositorioFabricante.SelecionarRegistros();
+
+        for (int i = 0; i < fabricantes.Length; i++)
+        {
+            Fabricante f = (Fabricante)fabricantes[i];
+
+            if (f == null)
+                continue;
+
+            Console.WriteLine(
+               "{0, -10} | {1, -20} | {2, -30} | {3, -15}",
+                f.id, f.nome, f.email, f.telefone
+            );
+        }
+
+        Console.ReadLine();
     }
 
     public void VisualizarRegistros(bool exibirCabecalho)

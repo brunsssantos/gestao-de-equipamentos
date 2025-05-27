@@ -1,16 +1,14 @@
-﻿namespace GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
+﻿using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
+
+namespace GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
 
 // Dados
 
-public class RepositorioEquipamento
+public class RepositorioEquipamento : RepositorioBase
 {
     public Equipamento[] equipamentos = new Equipamento[100];
     public int contadorEquipamentos = 0;
-    public void CadastrarEquipamento(Equipamento equipamento)
-    {
-        equipamentos[contadorEquipamentos] = equipamento;
-        contadorEquipamentos++;
-    }
+   
     public bool EditarEquipamento(int idSelecionado, Equipamento equipamentoAtualizado)
     {
         Equipamento equipamentoSelecionado = SelecionarEquipamentoPorId(idSelecionado);

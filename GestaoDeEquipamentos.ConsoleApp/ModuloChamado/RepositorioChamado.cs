@@ -1,15 +1,11 @@
-﻿namespace GestaoDeEquipamentos.ConsoleApp.ModuloChamado
+﻿using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
+
+namespace GestaoDeEquipamentos.ConsoleApp.ModuloChamado
 {
-    public class RepositorioChamado
+    public class RepositorioChamado : RepositorioBase
     {
         public Chamado[] chamados = new Chamado[100];
         public int contadorChamados = 0;
-        public void CadastrarChamado(Chamado chamado)
-        {
-            chamados[contadorChamados] = chamado;
-
-            contadorChamados++;
-        }
 
         public bool EditarChamado(int idSelecionado, Chamado chamadoAtualizado)
         {
