@@ -6,78 +6,17 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
 // Apresentação
 public class TelaEquipamento
 {
-    public RepositorioEquipamento repositorioEquipamento;
-    public RepositorioFabricante repositorioFabricante;
+    private RepositorioEquipamento repositorioEquipamento;
+    private RepositorioFabricante repositorioFabricante;
 
-    public void ExibirCabecalho()
+    public TelaEquipamento(
+        RepositorioEquipamento repositorioEquipamento,
+        RepositorioFabricante repositorioFabricante
+    ) : base("Equipamento", repositorioEquipamento)
     {
-        Console.Clear();
-        Console.WriteLine("Gestão de Equipamentos");
-        Console.WriteLine();
+        this.repositorioEquipamento = repositorioEquipamento;
+        this.repositorioFabricante = repositorioFabricante;
     }
-    public char ApresentarMenu()
-    {
-        ExibirCabecalho();
-        Console.WriteLine("1 - Cadastro de Equipamento");
-        Console.WriteLine("2 - Visualizar Equipamentos");
-        Console.WriteLine("3 - Editar Equipamentos");
-        Console.WriteLine("3 - Excluir Equipamentos");
-        Console.WriteLine("S - Sair");
-
-        Console.WriteLine();
-
-        Console.Write("Digite uma opção válida: ");
-        char opcaoEscolhida = Console.ReadLine().ToUpper()[0];
-
-        return opcaoEscolhida;
-
-    }
-
-    public void CadastrarRegistro()
-    {
-        ExibirCabecalho();
-
-        Console.WriteLine("Cadastro de Equipamentos");
-
-        Console.WriteLine();
-
-        Equipamento equipamento = ObterDados();
-
-        repositorioEquipamento.CadastrarRegistro(equipamento);
-
-        Console.WriteLine($"\nEquipamento: \"{equipamento.nome}\" cadastrado com sucesso");
-        Console.ReadLine();
-    }
-
-    public void ExcluirRegistros()
-    {
-        ExibirCabecalho();
-
-        Console.WriteLine("Exclusão de Equipamentos");
-
-        Console.WriteLine();
-
-        VisualizarRegistros(false);
-
-        Console.WriteLine("Digite o id do registro que deseja selecionar:");
-        int idSelecionado = Convert.ToInt32(Console.ReadLine());
-
-        Console.WriteLine();
-
-        bool conseguiuExluir = repositorioEquipamento.ExcluirRegistro(idSelecionado);
-
-        if (!conseguiuExluir)
-        {
-            Console.WriteLine("Não foi possível encontrar o registro selecionado");
-            Console.ReadLine();
-
-            return;
-        }
-            Console.WriteLine($"\nEquipamento excluído com sucesso");
-            Console.ReadLine();
-
-    }
-
     public Equipamento ObterDados()
     {
         Console.WriteLine("Digite o nome do equipamento: ");

@@ -20,4 +20,23 @@ public class Chamado : EntidadeBase
         this.dataAbertura = chamadoAtualizado.dataAbertura;
         this.equipamento = chamadoAtualizado.equipamento;
     }
+
+    public override string Validar()
+    {
+        string erros = "";
+
+        if (string.IsNullOrWhiteSpace(titulo))
+            erros += "O campo \"Título\" é obrigatório.\n";
+
+        else if (titulo.Length < 3)
+            erros += "O campo \"Título\" precisa conter ao menos 3 caracteres.\n";
+
+        if (string.IsNullOrWhiteSpace(descricao))
+            erros += "O campo \"Descrição\" é obrigatório.\n";
+
+        if (equipamento == null)
+            erros += "O campo \"Equipamento\" é obrigatório.\n";
+
+        return erros;
+    }
 }

@@ -7,6 +7,12 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloChamado
     {
         public RepositorioEquipamento repositorioEquipamento;
         public RepositorioChamado repositorioChamado;
+
+        public TelaChamado(RepositorioChamado repositorioChamado, RepositorioEquipamento repositorioEquipamento)
+        {
+            this.repositorioChamado = repositorioChamado;
+            this.repositorioEquipamento = repositorioEquipamento;
+        }
         public void ExibirCabecalho()
         {
             Console.Clear();
@@ -62,7 +68,7 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloChamado
 
             Chamado chamadoAtualizado = ObterDados();
 
-            bool conseguiuEditar = repositorioChamado.EditarChamado(idSelecionado, chamadoAtualizado);
+            bool conseguiuEditar = repositorioChamado.EditarRegistro(idSelecionado, chamadoAtualizado);
 
             if (!conseguiuEditar)
             {
@@ -90,7 +96,7 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloChamado
 
             Console.WriteLine();
 
-            bool conseguiuExluir = repositorioChamado.ExcluirChamado(idSelecionado);
+            bool conseguiuExluir = repositorioChamado.ExcluirRegistro(idSelecionado);
 
             if (!conseguiuExluir)
             {
@@ -116,11 +122,11 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloChamado
                 "Id", "Título", "Descrição", "Data de Abertura", "Equipamento"
             );
 
-            Chamado[] chamados = repositorioChamado.SelecionarChamados();
+            EntidadeBase[] chamados = repositorioChamado.SelecionarRegistros();
 
             for (int i = 0; i < chamados.Length; i++)
             {
-                Chamado c = chamados[i];
+                Chamado c = (Chamado)chamados[i];
 
                 if (c == null)
                     continue;

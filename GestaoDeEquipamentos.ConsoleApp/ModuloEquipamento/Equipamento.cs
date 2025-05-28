@@ -23,5 +23,24 @@ public class Equipamento : EntidadeBase
         this.numeroSerie = equipamentoAtualizado.numeroSerie;
 
     }
+
+    public override string Validar()
+    {
+        string erros = "";
+
+        if (string.IsNullOrWhiteSpace(nome))
+            erros += "O campo \"Nome\" é obrigatório.\n";
+
+        else if (nome.Length < 3)
+            erros += "O campo \"Nome\" precisa conter ao menos 3 caracteres.\n";
+
+        if (precoAquisicao <= 0)
+            erros += "O campo \"Preço de Aquisição\" deve ser maior que zero.\n";
+
+        if (dataFabricacao > DateTime.Now)
+            erros += "O campo \"Data de Fabricação\" deve conter uma data passada.\n";
+
+        return erros;
+    }
 }
 

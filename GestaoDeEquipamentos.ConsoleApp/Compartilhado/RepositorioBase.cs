@@ -2,7 +2,7 @@
 
 namespace GestaoDeEquipamentos.ConsoleApp.Compartilhado;
 
-public class RepositorioBase
+public abstract class RepositorioBase
 {
     private EntidadeBase[] registros = new EntidadeBase[100];
     private int contadorRegistros = 0;
