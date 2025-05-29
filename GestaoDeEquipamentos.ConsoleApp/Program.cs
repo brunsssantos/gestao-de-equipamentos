@@ -86,17 +86,17 @@ internal class Program
                 switch (opcaoEscolhida)
                 {
                     case '1':
-                        telaFabricante.CadastrarFabricante();
+                        telaFabricante.CadastrarRegistro();
                         break;
 
                     case '2':
-                        telaFabricante.VisualizarFabricantes(true);
+                        telaFabricante.VisualizarRegistros(true);
                         break;
                     case '3':
-                        telaFabricante.EditarFabricantes();
+                        telaFabricante.EditarRegistros();
                         break;
                     case '4':
-                        telaFabricante.ExcluirFabricantes();
+                        telaFabricante.ExcluirRegistros();
                         break;
                 }
             }
