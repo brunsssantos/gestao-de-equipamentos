@@ -70,7 +70,7 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloChamado
 
         }
 
-        public void VisualizarEquipamentos()
+        private void VisualizarEquipamentos()
         {
             Console.WriteLine("Visualizaçao de Equipamentos");
             Console.WriteLine();
