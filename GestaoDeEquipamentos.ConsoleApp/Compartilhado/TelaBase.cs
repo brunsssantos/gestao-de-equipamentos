@@ -64,6 +64,58 @@ public abstract class TelaBase
         Console.WriteLine($"\n{nomeEntidade} cadastrado com sucesso");
         Console.ReadLine();
     }
+
+    public void EditarRegistros()
+    {
+        ExibirCabecalho();
+
+        Console.WriteLine($"Edição de {nomeEntidade}");
+        Console.WriteLine();
+
+        VisualizarRegistros(false);
+
+        Console.WriteLine("Digite o id do fabricante que deseja selecionar:");
+        int idSelecionado = Convert.ToInt32(Console.ReadLine());
+
+        Console.WriteLine();
+
+        EntidadeBase registroAtualizado = ObterDados();
+
+        repositorio.EditarRegistro(idSelecionado, registroAtualizado);
+
+        Console.WriteLine($"\n{nomeEntidade} editado com sucesso");
+        Console.ReadLine();
+    }
+
+    public void ExcluirRegistros()
+    {
+        ExibirCabecalho();
+
+        Console.WriteLine($"Exclusão de {nomeEntidade}");
+
+        Console.WriteLine();
+
+        VisualizarRegistros(false);
+
+        Console.WriteLine($"Digite o id do {nomeEntidade} que deseja selecionar:");
+        int idSelecionado = Convert.ToInt32(Console.ReadLine());
+
+        Console.WriteLine();
+
+        bool conseguiuExluir = repositorio.ExcluirRegistro(idSelecionado);
+
+        if (!conseguiuExluir)
+        {
+            Console.WriteLine($"Não foi possível encontrar o {nomeEntidade} selecionado");
+            Console.ReadLine();
+
+            return;
+        }
+        Console.WriteLine($"\n{nomeEntidade} excluído com sucesso");
+        Console.ReadLine();
+    }
+
+    public abstract void VisualizarRegistros(bool exibirCabecalho);
     protected void ExibirCabecalho()
     {
         Console.Clear();
@@ -71,5 +123,7 @@ public abstract class TelaBase
         Console.WriteLine();
     }
     protected abstract EntidadeBase ObterDados();
+
+   
 }
 

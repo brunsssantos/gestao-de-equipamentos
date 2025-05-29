@@ -13,57 +13,7 @@ public class TelaFabricante : TelaBase
         this.repositorioFabricante = repositorioFabricante;
     }
 
-    public void EditarFabricantes()
-    {
-        ExibirCabecalho();
-
-        Console.WriteLine("Edição de Fabricantes");
-        Console.WriteLine();
-
-        VisualizarFabricantes(false);
-
-        Console.WriteLine("Digite o id do fabricante que deseja selecionar:");
-        int idSelecionado = Convert.ToInt32(Console.ReadLine());
-
-        Console.WriteLine();
-
-        Fabricante fabricanteAtualizado = ObterDados();
-
-        repositorioFabricante.EditarRegistro(idSelecionado, fabricanteAtualizado);
-
-        Console.WriteLine($"\nFabricante: \"{fabricanteAtualizado.nome}\" editado com sucesso");
-        Console.ReadLine();
-    }
-
-    public void ExcluirFabricantes()
-    {
-        ExibirCabecalho();
-
-        Console.WriteLine("Exclusão de Fabricantes");
-
-        Console.WriteLine();
-
-        VisualizarFabricantes(false);
-
-        Console.WriteLine("Digite o id do fabricante que deseja selecionar:");
-        int idSelecionado = Convert.ToInt32(Console.ReadLine());
-
-        Console.WriteLine();
-
-        bool conseguiuExluir = repositorioFabricante.ExcluirRegistro(idSelecionado);
-
-        if (!conseguiuExluir)
-        {
-            Console.WriteLine("Não foi possível encontrar o fabricante selecionado");
-            Console.ReadLine();
-
-            return;
-        }
-        Console.WriteLine($"\nFabricante excluído com sucesso");
-        Console.ReadLine();
-    }
-
-    public void VisualizarFabricantes(bool exibirCabecalho)
+    public override void VisualizarRegistros(bool exibirCabecalho)
     {
         if (exibirCabecalho == true)
             ExibirCabecalho();

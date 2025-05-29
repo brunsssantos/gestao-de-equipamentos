@@ -4,7 +4,7 @@ using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
 namespace GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
 
 // Apresentação
-public class TelaEquipamento
+public class TelaEquipamento : TelaBase
 {
     private RepositorioEquipamento repositorioEquipamento;
     private RepositorioFabricante repositorioFabricante;
@@ -17,7 +17,7 @@ public class TelaEquipamento
         this.repositorioEquipamento = repositorioEquipamento;
         this.repositorioFabricante = repositorioFabricante;
     }
-    public Equipamento ObterDados()
+    protected override Equipamento ObterDados()
     {
         Console.WriteLine("Digite o nome do equipamento: ");
         string nome = Console.ReadLine();
@@ -82,7 +82,7 @@ public class TelaEquipamento
         Console.ReadLine();
     }
 
-    public void VisualizarRegistros(bool exibirCabecalho)
+    public override void VisualizarRegistros(bool exibirCabecalho)
     {
         if (exibirCabecalho == true)
             ExibirCabecalho();
@@ -113,33 +113,5 @@ public class TelaEquipamento
         }
     }
 
-    public void EditarRegistros()
-    {
-        ExibirCabecalho();
-
-        Console.WriteLine("Edição de Equipamentos");
-        Console.WriteLine();
-
-        VisualizarRegistros(false);
-
-        Console.WriteLine("Digite o id do registro que deseja selecionar:");
-        int idSelecionado = Convert.ToInt32(Console.ReadLine());
-
-        Console.WriteLine();
-
-        Equipamento equipamentoAtualizado = ObterDados();
-
-        bool conseguiuEditar = repositorioEquipamento.EditarRegistro(idSelecionado, equipamentoAtualizado); 
-
-        if(!conseguiuEditar)
-        {
-            Console.WriteLine("Não foi possível encontrar o registro selecionado");
-            Console.ReadLine();
-
-            return;
-        }
-        Console.WriteLine($"\nEquipamento: \"{equipamentoAtualizado.nome}\" editado com sucesso");
-        Console.ReadLine();
-    }
 }
 
