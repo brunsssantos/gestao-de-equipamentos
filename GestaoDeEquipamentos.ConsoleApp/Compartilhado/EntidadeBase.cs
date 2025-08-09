@@ -1,14 +1,9 @@
-﻿using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
+﻿namespace GestaoDeEquipamentos.ConsoleApp.Compartilhado;
 
-namespace GestaoDeEquipamentos.ConsoleApp.Compartilhado;
-
-public abstract class EntidadeBase
+public abstract class EntidadeBase<Tipo>
 {
-    public int id;
+    public int Id { get; set; }
 
-    public abstract void AtualizarRegistro(EntidadeBase registroAtualizado);
+    public abstract void AtualizarRegistro(Tipo registroAtualizado);
     public abstract string Validar();
-
 }
-
-

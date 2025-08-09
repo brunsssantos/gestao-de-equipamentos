@@ -2,39 +2,49 @@
 using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
 
 namespace GestaoDeEquipamentos.ConsoleApp.ModuloChamado;
-public class Chamado : EntidadeBase
+
+public class Chamado : EntidadeBase<Chamado>
 {
-    public int id;
-    public string titulo;
-    public string descricao;
-    public DateTime dataAbertura;
+    public string Titulo { get; set; }
+    public string Descricao { get; set; }
+    public DateTime DataAbertura { get; set; }
+    public Equipamento Equipamento { get; set; }
 
-    public Equipamento equipamento;
-
-    public override void AtualizarRegistro(EntidadeBase registroAtualizado)
+    public Chamado(
+        string titulo,
+        string descricao,
+        DateTime dataAbertura,
+        Equipamento equipamento
+    )
     {
-        Chamado chamadoAtualizado = (Chamado)registroAtualizado;
+        Titulo = titulo;
+        Descricao = descricao;
+        DataAbertura = dataAbertura;
+        Equipamento = equipamento;
+    }
 
-        this.titulo = chamadoAtualizado.titulo;
-        this.descricao = chamadoAtualizado.descricao;
-        this.dataAbertura = chamadoAtualizado.dataAbertura;
-        this.equipamento = chamadoAtualizado.equipamento;
+    public override void AtualizarRegistro(Chamado registroAtualizado)
+    {
+        Titulo = registroAtualizado.Titulo;
+        Descricao = registroAtualizado.Descricao;
+        DataAbertura = registroAtualizado.DataAbertura;
+        Equipamento = registroAtualizado.Equipamento;
     }
 
     public override string Validar()
     {
         string erros = "";
 
-        if (string.IsNullOrWhiteSpace(titulo))
+        if (string.IsNullOrWhiteSpace(Titulo))
             erros += "O campo \"Título\" é obrigatório.\n";
 
-        else if (titulo.Length < 3)
+        else if (Titulo.Length < 3)
             erros += "O campo \"Título\" precisa conter ao menos 3 caracteres.\n";
 
-        if (string.IsNullOrWhiteSpace(descricao))
+        if (string.IsNullOrWhiteSpace(Descricao))
             erros += "O campo \"Descrição\" é obrigatório.\n";
 
-        if (equipamento == null)
+        if (Equipamento == null)
             erros += "O campo \"Equipamento\" é obrigatório.\n";
 
         return erros;

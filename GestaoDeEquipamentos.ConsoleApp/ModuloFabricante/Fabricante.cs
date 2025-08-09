@@ -1,50 +1,47 @@
-﻿using System.Net.Mail;
-using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
+﻿using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
+using System.Net.Mail;
 
-namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante
+namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
+
+public class Fabricante : EntidadeBase<Fabricante>
 {
-    public class Fabricante : EntidadeBase
+    public string Nome { get; set; }
+    public string Email { get; set; }
+    public string Telefone { get; set; }
+
+    public Fabricante(string nome, string email, string telefone)
     {
-        public string nome;
-        public string email;
-        public string telefone;
+        this.Nome = nome;
+        this.Email = email;
+        this.Telefone = telefone;
+    }
 
-        public Fabricante(string nome, string email, string telefone)
-        {
-            this.nome = nome;
-            this.email = email;
-            this.telefone = telefone;
-        }
+    public override string Validar()
+    {
+        string erros = "";
 
-        public override string Validar()
-        {
-            string erros = "";
+        if (string.IsNullOrWhiteSpace(Nome))
+            erros += "O nome é obrigatório!\n";
 
-            if (string.IsNullOrWhiteSpace(nome))
-                erros += "O nome é obrigatório!\n ";
+        else if (Nome.Length < 2)
+            erros += "O nome deve conter mais que 1 caractere!\n";
 
-            else if (nome.Length < 2)
-                erros += "O nome deve conter mais que 1 caractere\n";
+        if (!MailAddress.TryCreate(Email, out _))
+            erros += "O email deve conter um formato válido \"nome@provedor.com\"!\n";
 
-            if (!MailAddress.TryCreate(email, out _))
-                erros += "O e-mail deve conter um formato válido \"nome@provedor.com\"!\n";
+        if (string.IsNullOrWhiteSpace(Telefone))
+            erros += "O telefone é obrigatório!\n";
 
-            if (string.IsNullOrWhiteSpace(telefone))
-                erros += "O telefone é obrigatório\n";
+        else if (Telefone.Length < 9)
+            erros += "O telefone deve conter no mínimo 9 caracteres!\n";
 
-            else if (telefone.Length < 9)
-                erros += "O telefone deve conter no mínimo 9 caracteres\n";
+        return erros;
+    }
 
-            return erros;
-        }
-
-        public override void AtualizarRegistro(EntidadeBase registroAtualizado)
-        {
-            Fabricante fabricanteAtualizado = (Fabricante)registroAtualizado;
-
-            this.nome = fabricanteAtualizado.nome;
-            this.email = fabricanteAtualizado.email;
-            this.telefone = fabricanteAtualizado.telefone;
-        }
+    public override void AtualizarRegistro(Fabricante registroAtualizado)
+    {
+        this.Nome = registroAtualizado.Nome;
+        this.Email = registroAtualizado.Email;
+        this.Telefone = registroAtualizado.Telefone;
     }
 }

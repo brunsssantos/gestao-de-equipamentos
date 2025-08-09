@@ -1,14 +1,13 @@
 ﻿using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
-using GestaoDeEquipamentos.ConsoleApp.ModuloChamado;
-using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
 
 namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
 
-public class TelaFabricante : TelaBase
-{  
+public class TelaFabricante : TelaBase<Fabricante>, ITela
+{
     private RepositorioFabricante repositorioFabricante;
 
-    public TelaFabricante(RepositorioFabricante repositorioFabricante) : base("Fabricantes", repositorioFabricante)
+    public TelaFabricante(RepositorioFabricante repositorioFabricante)
+        : base("Fabricante", repositorioFabricante)
     {
         this.repositorioFabricante = repositorioFabricante;
     }
@@ -18,28 +17,22 @@ public class TelaFabricante : TelaBase
         if (exibirCabecalho == true)
             ExibirCabecalho();
 
-        Console.WriteLine("Visualizaçao de Fabricantes");
+        Console.WriteLine("Visualização de Fabricantes");
+
         Console.WriteLine();
 
         Console.WriteLine(
-            "{0, -10} | {1, -20} | {2, -15} | {3, -10}",
-            "Id", "Nome", "E-mail", "Telefone"
+            "{0, -10} | {1, -20} | {2, -30} | {3, -15}",
+            "Id", "Nome", "Email", "Telefone"
         );
 
-        EntidadeBase[] fabricantes = repositorioFabricante.SelecionarRegistros();
+        List<Fabricante> fabricantes = repositorioFabricante.SelecionarRegistros();
 
-        for (int i = 0; i < fabricantes.Length; i++)
+        foreach (Fabricante f in fabricantes)
         {
-            Object objetoFabricante = fabricantes[i];
-
-            Fabricante f = (Fabricante)fabricantes[i];
-
-            if (f == null)
-                continue;
-
             Console.WriteLine(
-                "{0, -10} | {1, -20} | {2, -15} | {3, -10}",
-                f.id, f.nome, f.email, f.telefone
+               "{0, -10} | {1, -20} | {2, -30} | {3, -15}",
+                f.Id, f.Nome, f.Email, f.Telefone
             );
         }
 
@@ -48,13 +41,13 @@ public class TelaFabricante : TelaBase
 
     protected override Fabricante ObterDados()
     {
-        Console.WriteLine("Digite o nome do fabricante: ");
+        Console.Write("Digite o nome do fabricante: ");
         string nome = Console.ReadLine();
 
-        Console.WriteLine("Digite o e-mail do fabricante: ");
+        Console.Write("Digite o endereço de email do fabricante: ");
         string email = Console.ReadLine();
 
-        Console.WriteLine("Digite o telefone do fabricante: ");
+        Console.Write("Digite o telefone do fabricante: ");
         string telefone = Console.ReadLine();
 
         Fabricante fabricante = new Fabricante(nome, email, telefone);
@@ -62,4 +55,3 @@ public class TelaFabricante : TelaBase
         return fabricante;
     }
 }
-
