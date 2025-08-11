@@ -11,13 +11,15 @@ public class Equipamento : EntidadeBase<Equipamento>
     public Fabricante Fabricante { get; set; }
     public DateTime DataFabricacao { get; set; }
 
+    public Equipamento() { }
+
     public Equipamento(
         string nome,
         decimal precoAquisicao,
         string numeroSerie,
         Fabricante fabricante,
         DateTime dataFabricacao
-    )
+    ) : this()
     {
         Nome = nome;
         PrecoAquisicao = precoAquisicao;
