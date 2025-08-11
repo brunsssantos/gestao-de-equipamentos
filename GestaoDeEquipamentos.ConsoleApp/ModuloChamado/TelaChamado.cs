@@ -1,5 +1,8 @@
 ﻿using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
-using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
+using GestaoDeEquipamentos.Dominio.ModuloChamado;
+using GestaoDeEquipamentos.Dominio.ModuloEquipamento;
+using GestaoDeEquipamentos.Infraestrutura.ModuloChamado;
+using GestaoDeEquipamentos.Infraestrutura.ModuloEquipamento;
 
 namespace GestaoDeEquipamentos.ConsoleApp.ModuloChamado;
 

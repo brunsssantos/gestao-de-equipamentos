@@ -1,4 +1,7 @@
-﻿namespace GestaoDeEquipamentos.ConsoleApp.Compartilhado;
+﻿using GestaoDeEquipamentos.Dominio.Compartilhado;
+using GestaoDeEquipamentos.Infraestrutura.Compartilhado;
+
+namespace GestaoDeEquipamentos.ConsoleApp.Compartilhado;
 
 public abstract class TelaBase<T> where T : EntidadeBase<T>
 {
