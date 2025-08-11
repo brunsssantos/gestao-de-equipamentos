@@ -1,4 +1,6 @@
-﻿namespace GestaoDeEquipamentos.ConsoleApp.Compartilhado;
+﻿using GestaoDeEquipamentos.Dominio.Compartilhado;
+
+namespace GestaoDeEquipamentos.Infraestrutura.Compartilhado;
 
 public abstract class RepositorioBase<Tipo> where Tipo : EntidadeBase<Tipo>
 {

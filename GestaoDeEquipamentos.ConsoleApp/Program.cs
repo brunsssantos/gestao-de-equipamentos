@@ -1,10 +1,8 @@
 ﻿using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
-using GestaoDeEquipamentos.ConsoleApp.ModuloChamado;
-using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
-using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
 
 namespace GestaoDeEquipamentos.ConsoleApp;
-internal class Program
+
+class Program
 {
     static void Main(string[] args)
     {
@@ -14,14 +12,14 @@ internal class Program
         {
             telaPrincipal.ApresentarMenuPrincipal();
 
-            TelaBase telaEscolhida = telaPrincipal.ObterTela();
+            ITela telaEscolhida = telaPrincipal.ObterTela();
 
             if (telaEscolhida == null)
                 break;
 
             char opcaoEscolhida = telaEscolhida.ApresentarMenu();
 
-            if (opcaoEscolhida == 'S')
+            if (char.ToUpper(opcaoEscolhida) == 'S')
                 break;
 
             switch (opcaoEscolhida)
@@ -31,13 +29,15 @@ internal class Program
                     break;
 
                 case '2':
-                    telaEscolhida.VisualizarRegistros(true);
+                    telaEscolhida.EditarRegistro();
                     break;
+
                 case '3':
-                    telaEscolhida.EditarRegistros();
+                    telaEscolhida.ExcluirRegistro();
                     break;
+
                 case '4':
-                    telaEscolhida.ExcluirRegistros();
+                    telaEscolhida.VisualizarRegistros(true);
                     break;
             }
         }
