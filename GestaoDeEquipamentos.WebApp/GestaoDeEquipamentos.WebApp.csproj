@@ -7,4 +7,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="Views\Fabricante\Cadastrar - Cópia.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GestaoDeEquipamentos.Dominio\GestaoDeEquipamentos.Dominio.csproj" />
+    <ProjectReference Include="..\GestaoDeEquipamentos.Infraestrutura.Arquivos\GestaoDeEquipamentos.Infraestrutura.Arquivos.csproj" />
+  </ItemGroup>
+
 </Project>
