@@ -1,17 +1,76 @@
 ﻿@using GestaoDeEquipamentos.Dominio.ModuloFabricante
-
 @model List<Fabricante>
 
-<h1>Visualização de Fabricantes</h1>
+<html>
+<head>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+          crossorigin="anonymous">
 
-<hr />  
+    <script defer
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+            crossorigin="anonymous"></script>
 
-<a href="/Fabricante/Cadastrar">Cadastrar Novo Fabricante</a>
+    <title>Visualização de Fabricantes | Gestão de Equipamentos</title>
+</head>
+<body data-bs-theme="dark">
 
-<ul>
+    <!-- Navbar -->
+    <nav class="navbar bg-body-tertiary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Gestão de Equipamentos</a>
+            <ul class="navbar-nav flex-row ms-auto">
+                <li class="nav-item me-2">
+                    <a class="btn btn-outline-primary" href="/Fabricante">Fabricantes</a>
+                </li>
+                <li class="nav-item me-2">
+                    <a class="btn btn-outline-primary" href="/Equipamento">Equipamentos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-primary" href="/Chamado">Chamados</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-    @foreach (Fabricante f in Model)
-    {
-        <li>@f.Nome / @f.Email / @f.Telefone / <a href="/Fabricante/Editar/@f.Id">Editar</a> / <a href="/Fabricante/Excluir/@f.Id">Excluir</a></li>
-    }
-</ul>
+    <!-- Conteúdo -->
+    <div class="container my-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h1>Visualização de Fabricantes</h1>
+            <a class="btn btn-primary" href="/Fabricante/Cadastrar">+ Novo Fabricante</a>
+        </div>
+
+        <table class="table table-dark table-hover align-middle">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th class="text-end">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Fabricante f in Model)
+                {
+                    <tr>
+                        <td>@f.Nome</td>
+                        <td>@f.Email</td>
+                        <td>@f.Telefone</td>
+                        <td class="text-end">
+                            <a class="btn btn-sm btn-warning me-1" href="/Fabricante/Editar/@f.Id">Editar</a>
+                            <a class="btn btn-sm btn-danger" href="/Fabricante/Excluir/@f.Id"
+                               onclick="return confirm('Tem certeza que deseja excluir este fabricante?')">
+                                Excluir
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
