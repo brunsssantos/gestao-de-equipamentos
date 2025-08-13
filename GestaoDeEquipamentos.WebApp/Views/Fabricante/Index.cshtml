@@ -19,13 +19,13 @@
             <a class="navbar-brand" href="#">Gestão de Equipamentos</a>
             <ul class="navbar-nav flex-row ms-auto">
                 <li class="nav-item me-2">
-                    <a class="btn btn-outline-primary" href="/Fabricante">Fabricantes</a>
+                    <a class="btn btn-primary" href="/Fabricante">Fabricantes</a>
                 </li>
                 <li class="nav-item me-2">
-                    <a class="btn btn-outline-primary" href="/Equipamento">Equipamentos</a>
+                    <a class="btn btn-primary" href="/Equipamento">Equipamentos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="btn btn-outline-primary" href="/Chamado">Chamados</a>
+                    <a class="btn btn-primary" href="/Chamado">Chamados</a>
                 </li>
             </ul>
         </div>
@@ -51,11 +51,10 @@
                             <p class="card-text"><strong>Telefone:</strong> @f.Telefone</p>
                         </div>
                         <div class="card-footer text-end border-secondary">
-                            <a class="btn btn-sm btn-warning me-1" href="/Fabricante/Editar/@f.Id">
+                            <a class="btn btn-sm btn-primary me-1" href="/Fabricante/Editar/@f.Id">
                                 <i class="bi bi-pencil-square "></i>
                                 </a>
-                            <a class="btn btn-sm btn-danger text-dark" href="/Fabricante/Excluir/@f.Id"
-                               onclick="return confirm('Tem certeza que deseja excluir este fabricante?')">
+                            <a class="btn btn-sm btn-danger" href="/Fabricante/Excluir/@f.Id">
                                <i class="bi bi-trash3"></i>
                            </a>
                         </div>
