@@ -1,0 +1,49 @@
+﻿@using GestaoDeChamados.WebApp.Models
+@using GestaoDeEquipamentos.WebApp.Models
+@{
+    Layout = "_Layout";
+
+    ViewData["Title"] = "Cadastro de Chamado";
+}
+
+@model CadastrarChamadoViewModel
+
+<main class="container my-4">
+    <div class="row">
+        <form class="col-6" action="/Chamado/Cadastrar" method="post">
+
+            <div class="mb-3">
+                <label for="Titulo" class="form-label">Título:</label>
+                <input value="@Model.Titulo" name="Titulo" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label for="Descricao" class="form-label">Descrição</label>
+                <textarea value="@Model.Descricao" name="Descricao" class="form-control"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="DataAbertura" class="form-label">Data de Abertura:</label>
+                <input value="@Model.DataAbertura" type="date" name="DataAbertura" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label for="EquipamentoId" class="form-label">Equipamento:</label>
+                <select name="EquipamentoId" class="form-select">
+                    <
+                    @foreach(SelecionarEquipamentoViewModel e in Model.EquipamentosDisponiveis)
+                    {
+                        <option value="@e.Id">@e.Nome</option>
+                    }
+                </select>
+            </div>
+
+            <div class="text-end">
+                <a href="/Chamado" class="btn btn-outline-primary">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+
+        </form>
+
+    </div>
+</main>

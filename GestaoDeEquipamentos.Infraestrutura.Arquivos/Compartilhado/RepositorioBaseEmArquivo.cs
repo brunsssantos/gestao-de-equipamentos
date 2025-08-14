@@ -5,10 +5,9 @@ namespace GestaoDeEquipamentos.Infraestrutura.Compartilhado;
 
 public abstract class RepositorioBaseEmArquivo<Tipo> where Tipo : EntidadeBase<Tipo>
 {
-    protected List<Tipo> registros = new List<Tipo>();
-    protected static int contadorIds = 0;
-
     protected ContextoDados contexto;
+    protected List<Tipo> registros;
+    protected int contadorIds = 0;
 
     protected RepositorioBaseEmArquivo(ContextoDados contexto)
     {
