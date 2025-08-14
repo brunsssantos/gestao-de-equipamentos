@@ -1,5 +1,6 @@
 ﻿using GestaoDeEquipamentos.Dominio.ModuloEquipamento;
 using GestaoDeEquipamentos.Dominio.ModuloFabricante;
+using System.Runtime.CompilerServices;
 
 namespace GestaoDeEquipamentos.WebApp.Models;
 
@@ -29,6 +30,59 @@ public class CadastrarEquipamentoViewModel
     }
 }
 
+public class EditarEquipamentoViewModel
+{
+    public int Id { get; set; }
+    public string Nome { get; set; }
+    public decimal PrecoAquisicao { get; set; }
+    public DateTime DataFabricacao { get; set; }
+    public int FabricanteId { get; set; }
+    public List<SelecionarFabricanteViewModel> FabricantesDisponiveis { get; set; }
+
+    public EditarEquipamentoViewModel()
+    {
+        FabricantesDisponiveis = new List<SelecionarFabricanteViewModel>();
+    }
+
+    public EditarEquipamentoViewModel(
+        int id,
+        string nome,
+        decimal precoAquisicao,
+        DateTime dataFabricacao,
+        int fabricanteId,
+        List<Fabricante> fabricantes
+        
+    ) : this() //quando tem construtor base
+    {
+
+        foreach (Fabricante f in fabricantes)
+        {
+            SelecionarFabricanteViewModel selecionarVm =
+                new SelecionarFabricanteViewModel(f.Id, f.Nome);
+
+            FabricantesDisponiveis.Add(selecionarVm);
+        }
+
+        Id = id;
+        Nome = nome;
+        PrecoAquisicao = precoAquisicao;
+        DataFabricacao = dataFabricacao;
+        FabricanteId = fabricanteId;
+    }
+}
+
+public class ExcluirEquipamentoViewModel
+{
+    public int Id { get; set; }
+    public string Nome { get; set; }
+
+    public ExcluirEquipamentoViewModel(
+        int id,string nome) 
+    {
+        Id = id;
+        Nome = nome;
+    }
+}
 public class SelecionarFabricanteViewModel
 {
     public int Id { get; set; }

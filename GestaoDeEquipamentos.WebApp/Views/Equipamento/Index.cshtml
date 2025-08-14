@@ -26,14 +26,14 @@
                 <div class="card-body">
                     <h5 class="card-title">@e.Nome</h5>
                     <p class="card-text mb-1"><strong>Preço de Aquisição:</strong> @e.PrecoAquisicao.ToString("C2")</p>
-                    <p class="card-text"><strong>Data Fabricação:</strong> @e.DataFabricacao.ToShortDateString()</p>
+                    <p class="card-text mb-1"><strong>Data Fabricação:</strong> @e.DataFabricacao.ToShortDateString()</p>
                     <p class="card-text"><strong>Fabricante:</strong> @e.NomeFabricante</p>
                 </div>
                 <div class="card-footer text-end border-secondary">
-                    <a class="btn btn-sm btn-primary me-1" href="/Fabricante/Editar/@e.Id">
+                    <a class="btn btn-sm btn-primary me-1" href="/Equipamento/Editar/@e.Id">
                         <i class="bi bi-pencil-square "></i>
                     </a>
-                    <a class="btn btn-sm btn-danger" href="/Fabricante/Excluir/@e.Id">
+                    <a class="btn btn-sm btn-danger" href="/Equipamento/Excluir/@e.Id">
                         <i class="bi bi-trash3"></i>
                     </a>
                 </div>

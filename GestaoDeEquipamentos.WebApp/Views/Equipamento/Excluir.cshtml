@@ -1,0 +1,27 @@
+﻿@using GestaoDeEquipamentos.Dominio.ModuloEquipamento;
+@using GestaoDeEquipamentos.WebApp.Models
+
+@{
+    Layout = "_Layout";
+
+    ViewData["Title"] = "Exclusão de Equipamentos";
+}
+
+@model ExcluirEquipamentoViewModel;
+
+<main class="container my-4">
+    <div class="row">
+        <form class="col-6" action="/Equipamento/ExcluirConfirmado/@Model.Id" method="post">
+
+            <p class="mb-3">
+                Você tem certeza que deseja excluir o equipamento <strong>@Model.Nome</strong>?
+            </p>
+
+            <div class="text-end">
+                <a href="/Equipamento" class="btn btn-outline-danger">Voltar</a>
+                <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir este equipamento?')">Confirmar</button>
+            </div>
+
+        </form>
+    </div>
+</main>
