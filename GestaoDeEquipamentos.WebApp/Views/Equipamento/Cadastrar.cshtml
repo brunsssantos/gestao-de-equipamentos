@@ -1,0 +1,47 @@
+﻿@using GestaoDeEquipamentos.WebApp.Models
+@{
+    Layout = "_Layout";
+
+    ViewData["Title"] = "Cadastro de Equipamento";
+}
+
+@model CadastrarEquipamentoViewModel
+
+<main class="container my-4">
+    <div class="row">
+        <form class="col-6" action="/Equipamento/Cadastrar" method="post">
+
+            <div class="mb-3">
+                <label for="Nome" class="form-label">Nome:</label>
+                <input value="@Model.Nome" name="Nome" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label for="Email" class="form-label">Preço de Aquisição</label>
+                <input value="@Model.PrecoAquisicao" name="PrecoAquisicao" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label for="DataFabricacao" class="form-label">Data de Fabricação:</label>
+                <input value="@Model.DataFabricacao" type= "date" name="DataFabricacao" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label for="FabricanteId" class="form-label">Fabricante:</label>
+                <select name="FabricanteId" class="form-select"><
+                    @foreach(SelecionarFabricanteViewModel f in Model.FabricantesDisponiveis)
+                    {
+                        <option value="@f.Id">@f.Nome</option>
+                    }
+                </select>
+            </div>
+
+            <div class="text-end">
+                <a href="/Equipamento" class="btn btn-outline-primary">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+
+        </form>
+
+    </div>
+</main>

@@ -23,7 +23,7 @@ public class FabricanteController : Controller
 
         VisualizarFabricantesViewModel visualizarVm = new VisualizarFabricantesViewModel(fabricantes);
 
-        return View(fabricantes);
+        return View(visualizarVm);
     }
 
     [HttpGet]
@@ -100,7 +100,7 @@ public class FabricanteController : Controller
         ExcluirFabricanteViewModel excluirVm = 
             new ExcluirFabricanteViewModel(id, fabricanteSelecionado.Nome);
 
-        return View(fabricanteSelecionado);
+        return View(excluirVm);
     }
 
     [HttpPost]

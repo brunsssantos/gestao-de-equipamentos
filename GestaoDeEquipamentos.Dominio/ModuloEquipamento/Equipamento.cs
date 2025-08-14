@@ -16,14 +16,12 @@ public class Equipamento : EntidadeBase<Equipamento>
     public Equipamento(
         string nome,
         decimal precoAquisicao,
-        string numeroSerie,
-        Fabricante fabricante,
-        DateTime dataFabricacao
+        DateTime dataFabricacao,
+        Fabricante fabricante
     ) : this()
     {
         Nome = nome;
         PrecoAquisicao = precoAquisicao;
-        NumeroSerie = numeroSerie;
         Fabricante = fabricante;
         DataFabricacao = dataFabricacao;
     }
